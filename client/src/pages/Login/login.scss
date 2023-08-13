@@ -77,14 +77,15 @@ body {
       .buttonContainer {
         display: flex;
         flex-direction: row;
+        align-items: center;
         justify-content: space-evenly;
 
         .loginButton {
-          width: 50%;
+          flex: 1;
+          max-width: 100px;
           margin-top: 30px;
           color: white;
-          font-weight: 900;
-          align-self: self-start;
+          font-weight: 100;
           background-color: black;
           border: 2px solid blue;
           box-shadow: 0 0 10px #7cc1fa, 0 0 20px #0077ff, 0 0 30px #ff0040;
@@ -100,11 +101,11 @@ body {
         }
 
         .registerButton {
-          width: 50%;
+          flex: 1;
+          width: 100px;
           margin-top: 30px;
           color: white;
-          font-weight: 900;
-          align-self: self-start;
+          font-weight: 100;
           background-color: black;
           border: 2px solid blue;
           box-shadow: 0 0 10px #7cc1fa, 0 0 20px #0077ff, 0 0 30px #ff0040;

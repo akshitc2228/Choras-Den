@@ -1,0 +1,98 @@
+@font-face {
+  font-family: "CustomFont"; /* Provide a name for your custom font */
+  src: url("../../../public/Fonts/LasEnterPersonalUseOnly-D301.ttf")
+    format("truetype"); /* Adjust the path to your font file */
+  /* You can add additional font formats here (e.g., woff, woff2) to support more browsers */
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.loginWrapper {
+  overflow: hidden;
+  display: flex;
+  background: linear-gradient(rgba(0, 0, 0, 0.199), rgba(0, 0, 0, 0.5)),
+    url("./club.jpg") no-repeat center center fixed;
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+
+  .loginRight {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    flex-direction: column;
+    padding-left: 20px;
+    border-left: 2px solid transparent;
+    width: 30%;
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.534), rgba(0, 0, 0, 0.733));
+
+    .iconHolder {
+      display: flex;
+      align-items: center;
+      padding: 50px;
+
+      .logoImg {
+        position: absolute;
+        z-index: 0;
+        display: flex;
+        visibility: visible;
+        height: 200px;
+        width: 200px;
+        margin-right: 10px;
+      }
+
+      h1 {
+        z-index: 999;
+        color: rgba(255, 153, 153, 0.851);
+        text-shadow: 0 0 10px #ff0040, 0 0 20px #ff0040, 0 0 30px #ff0040;
+        font-family: "CustomFont", sans-serif;
+        font-size: 80px;
+        padding-top: 50px;
+      }
+    }
+
+    form {
+      padding-left: 60px;
+      padding-right: 100px;
+      display: flex;
+      flex-direction: column;
+
+      input {
+        color: white;
+        background-color: black;
+        border: 2px solid;
+        height: 40px;
+        border-color: rgba(255, 153, 153, 0.851);
+        box-shadow: 0 0 #ff0040, 0 0 20px #ff0040, 0 0 30px #ff0040;
+        margin-bottom: 30px;
+      }
+      button {
+        margin-top: 30px;
+        width: fit-content;
+        min-width: 60%;
+        color: white;
+        font-weight: 900;
+        align-self: self-start;
+        background-color: black;
+        border: 2px solid blue;
+        box-shadow: 0 0 10px #7cc1fa, 0 0 20px #0077ff, 0 0 30px #ff0040;
+        padding: 10px;
+        border-radius: 15px;
+        transition: background-color 0.5s;
+
+        &:hover {
+          cursor: pointer;
+          background-color: blue;
+          text-shadow: 0 0 10px #7cc1fa, 0 0 20px #0077ff, 0 0 30px #ff0040;
+        }
+      }
+    }
+  }
+}

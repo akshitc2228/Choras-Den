@@ -1,9 +1,9 @@
 import React from 'react'
+import NavBar from '../../components/navBar/NavBar'
 
 const Home = () => {
   return (
     <div>
-        <span>I say something</span>
     </div>
   )
 }

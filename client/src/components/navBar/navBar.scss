@@ -1,0 +1,75 @@
+@font-face {
+  font-family: "CustomFont"; /* Provide a name for your custom font */
+  src: url("../../../public/Fonts/LasEnterPersonalUseOnly-D301.ttf")
+    format("truetype"); /* Adjust the path to your font file */
+  /* You can add additional font formats here (e.g., woff, woff2) to support more browsers */
+}
+
+.navBar {
+  color: white;
+  background-color: rgb(7, 20, 44);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  height: 50px;
+  border-bottom: 1px solid lightgrey;
+
+  .navBarLeft {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
+    span {
+      font-size: 30px;
+      color: rgba(255, 153, 153, 0.851);
+      text-shadow: 0 0 10px #ff0040, 0 0 20px #ff0040, 0 0 30px #ff0040;
+      font-family: "CustomFont", sans-serif;
+      cursor: pointer;
+    }
+
+    .searchInput {
+      margin-left: 150px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: 2px solid white;
+      border-radius: 20px;
+
+      input {
+        margin: 5px;
+        color: white;
+        background-color: rgb(7, 20, 44);
+        border: none;
+        width: 500px;
+
+        &:focus {
+          border: none;
+        }
+      }
+    }
+  }
+
+  .navBarRight {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    .user {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 500;
+
+      img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+      span {
+      }
+    }
+  }
+}

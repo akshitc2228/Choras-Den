@@ -6,6 +6,8 @@
 }
 
 .navBar {
+  top: 0;
+  position: sticky;
   color: white;
   background-color: rgb(7, 20, 44);
   display: flex;
@@ -27,6 +29,11 @@
       text-shadow: 0 0 10px #ff0040, 0 0 20px #ff0040, 0 0 30px #ff0040;
       font-family: "CustomFont", sans-serif;
       cursor: pointer;
+      transition: color ease-in 1s;
+
+      &:hover {
+        color: azure;
+      }
     }
 
     .searchInput {
@@ -69,6 +76,14 @@
         object-fit: cover;
       }
       span {
+        cursor: pointer;
+        color: rgba(255, 153, 153, 0.851);
+        text-shadow: 0 0 10px #ff0040, 0 0 20px #ff0040, 0 0 30px #ff0040;
+
+        &:hover {
+          color: rgba(243, 176, 176, 0.851);
+        text-shadow: 0 0 10px #fc0303, 0 0 20px #ff3e6e, 0 0 30px #f70576;
+        }
       }
     }
   }

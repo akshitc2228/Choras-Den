@@ -1,0 +1,81 @@
+.tweetCard {
+  display: flex;
+  flex-direction: column-reverse;
+  background-color: white;
+  border-radius: 20px;
+  max-width: 100%;
+  padding: 10px;
+  color: black;
+  gap: 10px;
+  margin-bottom: 20px;
+  animation: scroll 15s linear infinite;
+
+  @keyframes scroll {
+    0% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(-100%);
+    }
+  }
+
+  .userCard {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    .userCardLeft {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+
+      img {
+        height: 35px;
+        width: 35px;
+        border-radius: 50%;
+        object-fit: contain;
+      }
+
+      .userDetails {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+    img {
+      height: 45px;
+      width: 45px;
+      border-radius: 50%;
+      object-fit: contain;
+    }
+  }
+
+  .tweetBody {
+    display: flex;
+    flex-direction: column;
+    word-wrap: break-word;
+
+    p {
+      font-weight: 500;
+      font-size: 22px;
+    }
+
+    span {
+      &:first-child {
+        color: rgb(0, 140, 255);
+      }
+
+      &:last-child {
+        color: rgb(167, 163, 163);
+      }
+    }
+  }
+
+  .tweetTag {
+  }
+
+  .tweetDate {
+  }
+}

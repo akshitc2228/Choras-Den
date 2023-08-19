@@ -13,13 +13,16 @@ import {
   Outlet,
   Navigate,
 } from "react-router-dom";
+import { useContext } from "react";
+import AuthContext from "./context/AuthContext";
 
 function App() {
+  /* const currUser = useContext(AuthContext); */
   const currUser = true;
 
   const Layout = () => {
     return (
-      <div>
+      <div className="theme-dark">
         <NavBar />
         <div style={{ display: "flex" }}>
           <LeftBar />

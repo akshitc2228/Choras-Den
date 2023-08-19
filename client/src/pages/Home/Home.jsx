@@ -1,9 +1,12 @@
-import React from 'react'
-import NavBar from '../../components/navBar/NavBar'
+import Posts from "../../components/posts/Posts"
+import Stories from "../../components/stories/Stories"
+import "./home.scss"
 
 const Home = () => {
   return (
-    <div>
+    <div className="home">
+      <Stories />
+      <Posts />
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import {
   DarkModeOutlined,
@@ -12,8 +12,13 @@ import {
 } from "@mui/icons-material";
 
 import "./navBar.scss"
+import { AuthContext } from "../../context/AuthContext";
 
 const NavBar = () => {
+  const {user: currUser} = useContext(AuthContext);
+
+  console.log(currUser.name)
+
   return (
     <div className="navBar">
       <div className="navBarLeft">
@@ -21,7 +26,7 @@ const NavBar = () => {
           <span>Chora's Den</span>
         </Link>
         <HomeOutlined />
-        <LightModeOutlined />
+       {/*  <LightModeOutlined /> */}
         <GridOnOutlined />
         <div className="searchInput">
           <SearchOutlined />
@@ -33,8 +38,8 @@ const NavBar = () => {
         <EmailOutlined />
         <NotificationsOutlined />
         <div className="user">
-          <img src="/assets/unknown.jpg" alt="" />
-          <span>John Doe</span>
+          <img src={currUser.profilePic} alt="" />
+          <span>{currUser.name}</span>
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 .rightBar {
+  padding-left: 20px;
   color: white;
-  background-color: rgb(7, 20, 44);
+  background-color: rgb(71, 82, 102);
   position: sticky;
   top: 70px;
   height: calc(100vh - 70px);
@@ -15,13 +16,15 @@
   }
 
   .container {
-    gap: 10px;
-    padding: 10px;
+    gap: 50px;
+    padding: 10px 10px;
     display: flex;
     flex-direction: column;
     height: 100vh;
 
     .newsWrapper {
+      background-color: rgb(7, 20, 44);
+      margin-top: 20px;
       padding: 10px 10px;
       display: flex;
       border-radius: 30px;
@@ -30,7 +33,14 @@
       height: fit-content;
       border: solid 2px grey;
 
-      span {
+      -webkit-box-shadow: 2px -1px 30px -1px rgba(255, 255, 255, 1);
+      -moz-box-shadow: 2px -1px 30px -1px rgba(255, 255, 255, 1);
+      box-shadow: 2px -1px 20px -1px rgba(255, 255, 255, 1);
+
+      .blockTitle {
+        cursor: default;
+        color: rgba(255, 153, 153, 0.851);
+        text-shadow: 0 0 10px #ff0040, 0 0 20px #ff0040, 0 0 30px #ff0040;
       }
 
       .tweetHolder {
@@ -40,6 +50,7 @@
     }
 
     .onlineFriends {
+      background-color: rgb(7, 20, 44);
       padding: 10px;
       padding-right: 280px;
       border-radius: 30px;
@@ -53,7 +64,14 @@
       margin: 10px 0px;
       gap: 10px;
 
+      -webkit-box-shadow: 2px -1px 30px -1px rgba(255, 255, 255, 1);
+      -moz-box-shadow: 2px -1px 30px -1px rgba(255, 255, 255, 1);
+      box-shadow: 2px -1px 20px -1px rgba(255, 255, 255, 1);
+
       .blockTitle {
+        cursor: default;
+        color: rgba(255, 153, 153, 0.851);
+        text-shadow: 0 0 10px #ff0040, 0 0 20px #ff0040, 0 0 30px #ff0040;
         align-self: start;
         margin-bottom: 20px;
       }
@@ -75,14 +93,15 @@
 
           &:hover {
             cursor: pointer;
-            color: rgb(236, 236, 5);
-            text-shadow: 0 0 10px #ffffff, 0 0 20px #bbf059, 0 0 30px #e2c51e;
+            color: rgb(3, 221, 86);
+            text-shadow: 0 0 10px #ffffff, 0 0 20px #d4ff85, 0 0 30px #b49a05;
           }
         }
       }
     }
 
     .friendReqs {
+      background-color: rgb(7, 20, 44);
       padding: 10px;
       padding-right: 160px;
       border: solid 2px grey;
@@ -96,7 +115,14 @@
       margin: 20px 0px;
       gap: 10px;
 
+      -webkit-box-shadow: 2px -1px 30px -1px rgba(255, 255, 255, 1);
+      -moz-box-shadow: 2px -1px 30px -1px rgba(255, 255, 255, 1);
+      box-shadow: 2px -1px 20px -1px rgba(255, 255, 255, 1);
+
       .blockTitle {
+        cursor: default;
+        color: rgba(255, 153, 153, 0.851);
+        text-shadow: 0 0 10px #ff0040, 0 0 20px #ff0040, 0 0 30px #ff0040;
         align-self: start;
         margin-bottom: 20px;
       }

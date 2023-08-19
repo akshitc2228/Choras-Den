@@ -6,7 +6,7 @@ const RightBar = () => {
     <div className="rightBar">
       <div className="container">
         <div className="newsWrapper">
-          <span>Chatter on the Den</span>
+          <span className="blockTitle">Chatter on the Den</span>
           <div className="tweetHolder">
             <Tweet
               accountHolder={"AccountHolder#1"}

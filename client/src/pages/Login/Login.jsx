@@ -1,7 +1,16 @@
+import { useContext } from "react";
 import "./login.scss";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 
 const Login = () => {
+  const { login } = useContext(AuthContext);
+
+  const handleLogin = () => {
+    //TODO
+    login();
+  };
+
   return (
     <div className="loginWrapper">
       <div className="loginRight">
@@ -13,7 +22,9 @@ const Login = () => {
           <input placeholder="E-mail" type="email"></input>
           <input placeholder="Password" type="password" min={8}></input>
           <div className="buttonContainer">
-            <button className="loginButton">Log-In</button>
+            <button className="loginButton" onClick={handleLogin}>
+              Log-In
+            </button>
             <Link to="/register">
               <button className="registerButton">Register</button>
             </Link>

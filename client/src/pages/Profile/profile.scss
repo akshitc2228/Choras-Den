@@ -1,0 +1,35 @@
+.profile {
+    width: 100%;
+  background-color: rgb(71, 82, 102);
+
+  .images {
+    width: 100%;
+    height: 300px;
+    position: relative;
+
+    .coverPic {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .profilePic {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        object-fit: cover;
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto;
+        top: 200px;
+    }
+  }
+
+  .userInfo {
+    color: white;
+    height: 180px;
+    border-radius: 20px;
+    padding: 20px;
+  }
+}

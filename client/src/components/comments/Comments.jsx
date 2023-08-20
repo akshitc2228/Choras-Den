@@ -1,6 +1,11 @@
+import { useContext } from "react";
 import "./comments.scss";
+import { AuthContext } from "../../context/AuthContext";
+import { Forward } from "@mui/icons-material";
 
 const Comments = () => {
+  const {user: currUser} = useContext(AuthContext);
+
   //TEMP
   const comments = [
     {
@@ -28,6 +33,13 @@ const Comments = () => {
 
   return (
     <div className="comments">
+      <div className="write">
+        <img src={currUser.profilePic} alt="" />
+        <input type="text" placeholder="Your thoughts?" />
+        <button>
+          <Forward />
+        </button>
+      </div>
       {comments.map((comment) => (
         <div className="comment">
           <img src={comment.profilePic} alt="" />

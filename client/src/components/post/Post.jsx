@@ -1,11 +1,16 @@
-import { FavoriteBorderOutlined, FavoriteOutlined, MoreHoriz, ShareOutlined, TextsmsOutlined } from "@mui/icons-material";
+import {
+  FavoriteBorderOutlined,
+  FavoriteOutlined,
+  MoreHoriz,
+  ShareOutlined,
+  TextsmsOutlined,
+} from "@mui/icons-material";
 import "./post.scss";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import Comments from "../comments/Comments";
 
 const Post = ({ post }) => {
-
   const [commentsOpen, setCommentsOpen] = useState(false);
   //TEMP
   const liked = false;
@@ -15,12 +20,19 @@ const Post = ({ post }) => {
       <div className="container">
         <div className="user">
           <div className="userInfo">
-            <img src={post.profilePic} alt="" />
+            <Link to={`/profile/:${post.userId}`}>
+              <img src={post.profilePic} alt="" />
+            </Link>
             <div className="details">
-              <Link to={`/profile/:${post.userId}`} style={{textDecoration:"none", color:"inherit"}}>
+              <Link
+                to={`/profile/:${post.userId}`}
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
                 <span className="name">{post.name}</span>
               </Link>
-                <span className="date">A long time ago in a galaxy far far away</span>
+              <span className="date">
+                A long time ago in a galaxy far far away
+              </span>
             </div>
           </div>
           <MoreHoriz />
@@ -35,8 +47,7 @@ const Post = ({ post }) => {
             114 likes
           </div>
           <div className="item" onClick={() => setCommentsOpen(!commentsOpen)}>
-            <TextsmsOutlined />
-            3 comments
+            <TextsmsOutlined />3 comments
           </div>
           <div className="item">
             <ShareOutlined />

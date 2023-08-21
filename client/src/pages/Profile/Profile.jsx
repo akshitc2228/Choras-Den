@@ -1,3 +1,4 @@
+import Posts from "../../components/posts/Posts";
 import "./profile.scss";
 import { Place } from "@mui/icons-material";
 
@@ -10,14 +11,17 @@ const Profile = () => {
       </div>
       <div className="profileContainer">
         <div className="userInfo">
-          <span>Jane Doe</span>
-          <span>Doe.Jane@fakemail.com</span>
-          <div className="item">
-            <Place />
-            <span>Limbo City</span>
+          <div className="userDetails">
+            <span className="userName">Jane Doe</span>
+            <span className="userEmail">Doe.Jane@fakemail.com</span>
+            <div className="item">
+              <Place />
+              <span>Limbo City</span>
+            </div>
+            <button>Follow Jane Doe on Chora's Den</button>
           </div>
-          <button>Follow Jane Doe on Chora's Den</button>
         </div>
+        <Posts />
       </div>
     </div>
   );

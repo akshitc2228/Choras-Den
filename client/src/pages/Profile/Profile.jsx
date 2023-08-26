@@ -1,7 +1,8 @@
 import Posts from "../../components/posts/Posts";
 import "./profile.scss";
-import { Place } from "@mui/icons-material";
+import { Cake, Favorite, Place } from "@mui/icons-material";
 
+//TODO: add conditional relationship status icon: i.e., single - empty heart; in a relationship - filled heart
 const Profile = () => {
   return (
     <div className="profile">
@@ -14,9 +15,19 @@ const Profile = () => {
           <div className="userDetails">
             <span className="userName">Jane Doe</span>
             <span className="userEmail">Doe.Jane@fakemail.com</span>
-            <div className="item">
-              <Place />
-              <span>Limbo City</span>
+            <div className="additionalInfo">
+              <div className="item">
+                <Place />
+                <span>Limbo City</span>
+              </div>
+              <div className="item">
+                <Cake />
+                <span>31/12/100</span>
+              </div>
+              <div className="item">
+                <Favorite />
+                <span>Double</span>
+              </div>
             </div>
             <button>Follow Jane Doe on Chora's Den</button>
           </div>

@@ -7,11 +7,11 @@ const Register = () => {
         <h1>REGISTER</h1>
         <form>
             <input required="true" type='email' placeholder='Enter your email address'></input>
-            <input required="true" type='password' placeholder='Enter your password'></input>
-            <input required="true" type='text' placeholder='Enter a username'></input>
-            <input required="true" type='text' placeholder='Enter your first name'></input>
-            <input required="true" type='text' placeholder='Enter your last name'></input>
-            <input type='date' placeholder='Enter your date of birth'></input>
+            <input required="true" type='password' placeholder='Create a password'></input>
+            <input required="true" type='text' placeholder='Enter your name'></input>
+            <input required="false" type='text' placeholder="Where're you from? (optional)"></input>
+            <label>Enter your Date of Birth (optional)</label>
+            <input required="false" type='date' placeholder='Enter your date of birth'></input>
             <button>Create new account</button>
         </form>
       </div>

@@ -61,6 +61,12 @@
           font-size: 12px;
         }
 
+        .additionalInfo {
+          display: flex;
+          flex-direction: row;
+          gap: 10px;
+        }
+
         .item {
           display: flex;
           align-items: center;

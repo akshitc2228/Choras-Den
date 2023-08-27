@@ -1,14 +1,32 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import "./login.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
 const Login = () => {
+  const [inputs, setInputs] = useState({
+    email: "",
+    password: "",
+  });
+
+  const [err, setErr] = useState(null);
+
+  const navigate = useNavigate()
+
+  const handleChange = (e) => {
+    setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
   const { login } = useContext(AuthContext);
 
-  const handleLogin = () => {
-    //TODO
-    login();
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      await login(inputs);
+      navigate("/")
+    } catch (err) {
+      setErr(err.response.data);
+    }
   };
 
   return (
@@ -19,9 +37,21 @@ const Login = () => {
           <h1>Chora's Den</h1>
         </div>
         <form>
-          <input placeholder="E-mail" type="email"></input>
-          <input placeholder="Password" type="password" min={8}></input>
+          <input
+            name="email"
+            onChange={handleChange}
+            placeholder="E-mail"
+            type="email"
+          ></input>
+          <input
+            name="password"
+            onChange={handleChange}
+            placeholder="Password"
+            type="password"
+            min={8}
+          ></input>
           <div className="buttonContainer">
+            {err && <span style={{color:"white"}}>{err}</span>}
             <button className="loginButton" onClick={handleLogin}>
               Log-In
             </button>

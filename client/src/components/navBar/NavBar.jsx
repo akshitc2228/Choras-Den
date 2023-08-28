@@ -11,13 +11,11 @@ import {
   SearchOutlined,
 } from "@mui/icons-material";
 
-import "./navBar.scss"
+import "./navBar.scss";
 import { AuthContext } from "../../context/AuthContext";
 
 const NavBar = () => {
-  const {user: currUser} = useContext(AuthContext);
-
-  console.log(currUser.name)
+  const { user: currUser } = useContext(AuthContext);
 
   return (
     <div className="navBar">
@@ -26,7 +24,7 @@ const NavBar = () => {
           <span>Chora's Den</span>
         </Link>
         <HomeOutlined />
-       {/*  <LightModeOutlined /> */}
+        {/*  <LightModeOutlined /> */}
         <GridOnOutlined />
         <div className="searchInput">
           <SearchOutlined />

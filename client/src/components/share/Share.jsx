@@ -1,10 +1,35 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import "./share.scss";
 import { AuthContext } from "../../context/AuthContext";
 import { Image, Person, Place } from "@mui/icons-material";
+import { useMutation, useQueryClient } from "react-query";
+import { makeRequest } from "../../axios";
 
 const Share = () => {
+  const [file, setFile] = useState(null);
+  const [des, setDes] = useState("");
+
   const { user: currentUser } = useContext(AuthContext);
+
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation(
+    (newPost) => {
+      return makeRequest.post("/posts", newPost);
+    },
+    {
+      onSuccess: () => {
+        // Invalidate and refetch
+        //dont get why the [] surrounding posts
+        queryClient.invalidateQueries(["posts"]);
+      },
+    }
+  );
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    mutation.mutate({ des });
+  };
 
   return (
     <div className="share">
@@ -16,6 +41,7 @@ const Share = () => {
               type="text"
               className="postText"
               placeholder={`What's on your mind ${currentUser.name}?`}
+              onChange={(e) => setDes(e.target.value)}
             />
           </div>
           <div className="glassHolder">
@@ -25,8 +51,15 @@ const Share = () => {
         <div className="bottomBar">
           <div className="attachments">
             <div className="item">
+              <label htmlFor="file"></label>
               <Image />
               <span>Add Image</span>
+              <input
+                type="file"
+                id="file"
+                style={{ display: "none" }}
+                onChange={(e) => setFile(e.target.files[0])}
+              />
             </div>
             <div className="item">
               <Place />
@@ -36,7 +69,7 @@ const Share = () => {
               <Person />
               <span>Tag a friend</span>
             </div>
-            <button>Post</button>
+            <button onClick={handleClick}>Post</button>
           </div>
         </div>
       </div>

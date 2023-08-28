@@ -1,31 +1,26 @@
 import "./posts.scss";
 import Post from "../post/Post";
+import { useQuery } from "react-query";
+import { makeRequest } from "../../axios";
 
 const Posts = () => {
-  const posts = [
-    {
-      id: 2,
-      userId: 2,
-      name: "Jane Doe",
-      profilePic: "/assets/jane-doe.jpg",
-      img: "/assets/sample_post_img.webp",
-      desc: "this is a random post by Jane Doe",
-    },
-    {
-      id: 3,
-      userId: 2,
-      name: "Jane Doe",
-      profilePic: "/assets/jane-doe.jpg",
-      img: "/assets/sample_post_img.webp",
-      desc: "this is another random post by Jane Doe",
-    },
-  ];
+  const { isLoading, error, data } = useQuery(["posts"], () =>
+    makeRequest.get("/posts").then((res) => {
+      return res.data;
+    })
+  );
 
   return (
     <div className="posts">
-      {posts.map((post) => (
-        <Post post={post} key={post.id} />
-      ))}
+      {error ? (
+        <span style={{ color: "white" }}>
+          Something went wrong. Please try again in a while
+        </span>
+      ) : isLoading ? (
+        <span style={{ color: "white" }}>Loading...</span>
+      ) : (
+        data.map((post) => <Post post={post} key={post.id} />)
+      )}
     </div>
   );
 };

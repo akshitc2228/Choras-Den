@@ -15,23 +15,27 @@ import {
 } from "react-router-dom";
 import { useContext } from "react";
 import AuthContext from "./context/AuthContext";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 function App() {
   /* const currUser = useContext(AuthContext); */
   const currUser = true;
 
+  //wrapping the app in this header to make queries from any component
+  const queryClient = new QueryClient();
+
   const Layout = () => {
     return (
-      <div className="theme-dark">
+      <QueryClientProvider client={queryClient}>
         <NavBar />
         <div style={{ display: "flex" }}>
           <LeftBar />
-          <div style={{display:"flex", flex:"6"}}>
+          <div style={{ display: "flex", flex: "6" }}>
             <Outlet />
           </div>
           <RightBar />
         </div>
-      </div>
+      </QueryClientProvider>
     );
   };
 

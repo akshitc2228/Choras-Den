@@ -1,9 +1,10 @@
 import { useContext, useState } from "react";
 import "./share.scss";
 import { AuthContext } from "../../context/AuthContext";
-import { Image, Person, Place } from "@mui/icons-material";
+import { Cancel, Image, Person, Place } from "@mui/icons-material";
 import { useMutation, useQueryClient } from "react-query";
 import { makeRequest } from "../../axios";
+import { uploadImage } from "../../uploadImage";
 
 const Share = () => {
   const [file, setFile] = useState(null);
@@ -26,9 +27,33 @@ const Share = () => {
     }
   );
 
-  const handleClick = (e) => {
+  /*   try {
+    const imgURL = await uploadImage(file, `post images/${user.username}`); // Get the image download URL
+    const newPost = {
+      userId: user._id,
+      description: desc.current.value,
+      img: imgURL, // Set the download URL in the newPost object
+    };
+
+    await axios.post("http://localhost:8080/posts", newPost);
+    alert("Post uploaded successfully");
+    window.location.reload();
+  } catch (error) {
+    console.log(error);
+    alert("Error uploading post");
+  } */
+
+  const handleClick = async (e) => {
     e.preventDefault();
-    mutation.mutate({ des });
+
+    try {
+      const imgURL = await uploadImage(file, `post images/${currentUser.name}`); // Get the image download URL
+      mutation.mutate({ des, img: imgURL });
+      console.log(imgURL);
+    } catch (error) {
+      console.log(error);
+      alert("Error uploading post");
+    }
   };
 
   return (
@@ -37,7 +62,7 @@ const Share = () => {
         <div className="mainContent">
           <div className="postContent">
             <img src={currentUser.profilePic} alt="" />
-            <input
+            <textarea
               type="text"
               className="postText"
               placeholder={`What's on your mind ${currentUser.name}?`}
@@ -48,18 +73,33 @@ const Share = () => {
             <img src="/assets/glass.gif" alt="" />
           </div>
         </div>
+        {file && (
+          <>
+            <Cancel onClick={() => setFile(null)} />
+            <div className="shareImgPreviewContainer">
+              <img
+                src={URL.createObjectURL(file)}
+                alt=""
+                className="imgPreview"
+              ></img>
+            </div>
+          </>
+        )}
+        <hr />
         <div className="bottomBar">
           <div className="attachments">
             <div className="item">
-              <label htmlFor="file"></label>
-              <Image />
-              <span>Add Image</span>
-              <input
-                type="file"
-                id="file"
-                style={{ display: "none" }}
-                onChange={(e) => setFile(e.target.files[0])}
-              />
+              <label htmlFor="file" style={{ cursor: "pointer" }}>
+                <Image />
+                <span>Add Image</span>
+                <input
+                  type="file"
+                  id="file"
+                  accept=".png, .jpg, .jpeg, .gif, .webp"
+                  style={{ display: "none" }}
+                  onChange={(e) => setFile(e.target.files[0])}
+                />
+              </label>
             </div>
             <div className="item">
               <Place />

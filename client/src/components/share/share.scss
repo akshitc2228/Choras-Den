@@ -15,6 +15,17 @@
         flex-direction: column;
         padding: 20px;
 
+        .shareImgPreviewContainer {
+            align-items: center;
+            width: 100%;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
         .mainContent {
             display: flex;
             flex-direction: row;
@@ -35,7 +46,8 @@
                     border-radius: 50%;
                 }
 
-                input {
+                textarea {
+                    resize: none;
                     display: flex;
                     font-size: large;
                     padding: 5px;
@@ -46,7 +58,7 @@
                     height: 230px;
 
                     &:focus {
-                        
+                        border: none;
                     }
                 }
             }
@@ -60,6 +72,22 @@
                     width: 100%;
                     object-fit: cover;
                 }
+            }
+
+            .shareImgPreviewContainer {
+                padding: 0 20px 10px 20px;
+                position: relative;
+            }
+
+            .imgPreview {
+                width: 100%;
+                object-fit: cover;
+            }
+
+            .cancelImgUpload {
+                margin-bottom: -10px;
+                opacity: 0.7;
+                cursor: pointer;
             }
         }
 
@@ -82,6 +110,11 @@
                     display: flex;
                     align-items: center;
                     gap: 5px;
+
+                    label {
+                        display: flex;
+                        align-items: center;
+                    }
 
                     span {}
                 }

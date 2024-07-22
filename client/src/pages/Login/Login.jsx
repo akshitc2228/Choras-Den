@@ -26,6 +26,7 @@ const Login = () => {
       navigate("/")
     } catch (err) {
       setErr(err.response.data);
+      console.log(err);
     }
   };
 

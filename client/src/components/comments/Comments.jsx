@@ -2,34 +2,18 @@ import { useContext } from "react";
 import "./comments.scss";
 import { AuthContext } from "../../context/AuthContext";
 import { Forward } from "@mui/icons-material";
+import { useQuery } from "react-query";
+import { makeRequest } from "../../axios";
 
-const Comments = () => {
+const Comments = ({postId}) => {
   const {user: currUser} = useContext(AuthContext);
 
-  //TEMP
-  const comments = [
-    {
-      id: 1,
-      desc: "⏁⊑⟒ ⌿⌰⟒⏃⌇⏃⋏⏁ ⊑⍜⎍⍀⌇ ⎎⌰⊬ ⏚⊬ ⋔⎍☊⊑ ⏁⍜⍜ ⌇⍜⍜⋏",
-      name: "Mighty Jabba",
-      userId: 3,
-      profilePic: "/assets/mightyJabba.jpeg",
-    },
-    {
-      id: 2,
-      desc: "Shepard someone leaked stuff from our Ilos mission report",
-      name: "Garrus Vakarian",
-      userId: 4,
-      profilePic: "/assets/garrus.jpg",
-    },
-    {
-      id: 3,
-      desc: "Damn it Wong!",
-      name: "Commander Shepard",
-      userId: 5,
-      profilePic: "/assets/shepard.jpeg",
-    },
-  ];
+  //fetch comments from postId
+  const { isLoading, error, data } = useQuery(["comments"], () =>
+    makeRequest.get(`/comments?postId=${postId}`).then((res) => {
+      return res.data;
+    })
+  );
 
   return (
     <div className="comments">
@@ -40,7 +24,7 @@ const Comments = () => {
           <Forward />
         </button>
       </div>
-      {comments.map((comment) => (
+      {isLoading ? "loading..." : data.map((comment) => (
         <div className="comment">
           <img src={comment.profilePic} alt="" />
           <div className="info">

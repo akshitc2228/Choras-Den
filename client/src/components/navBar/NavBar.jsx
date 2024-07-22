@@ -1,24 +1,75 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
-  DarkModeOutlined,
   EmailOutlined,
   GridOnOutlined,
   HomeOutlined,
-  LightModeOutlined,
   NotificationsOutlined,
   PersonOutlined,
   SearchOutlined,
+  Update,
 } from "@mui/icons-material";
 
 import "./navBar.scss";
 import { AuthContext } from "../../context/AuthContext";
+import { makeRequest } from "../../axios";
 
 const NavBar = () => {
-  const { user: currUser } = useContext(AuthContext);
+  const [ accountDrawer, setAccountDrawer ] = useState(false);
+  const [ renderUpdatePopUp, setRenderUpdate ] = useState(false);
+  const { user: currentUser } = useContext(AuthContext);
+
+/*   useEffect(() => {
+    console.log(renderUpdatePopUp);
+  }, [renderUpdatePopUp]) */
+
+  const toggleAccountDrawer = () => {
+    setAccountDrawer(!accountDrawer);
+  }
+
+  const openUpdatePage = () => {
+    setRenderUpdate(true);
+    if(renderUpdatePopUp === false) return null;
+
+    return (
+      <Update />
+    );
+  }
+
+  const handleLogout = async(e) => {
+    e.preventDefault();
+    try {
+      await makeRequest.post("/auth/logout")
+      localStorage.clear();
+      console.log("user successfully logged out");
+      window.location.reload();
+    } catch(error) {
+      console.log(error);
+    }
+  }
+
+  const renderAccountDrawer = () => {
+    if(accountDrawer === false) return null;
+
+    return (
+      <div className="accountOptionsDrawer">
+        <div>
+          <button onClick={openUpdatePage}><span>Account settings</span></button>
+          <hr />
+        </div>
+        <div>
+          <button onClick={handleLogout}>
+            <span>Logout</span>
+          </button>
+          <hr />
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="navBar">
+      {openUpdatePage()}
       <div className="navBarLeft">
         <Link to="/" style={{ textDecoration: "none" }}>
           <span>Chora's Den</span>
@@ -32,13 +83,18 @@ const NavBar = () => {
         </div>
       </div>
       <div className="navBarRight">
-        <PersonOutlined />
+        <div className="navBarItem">
+          <button onClick={toggleAccountDrawer}><PersonOutlined style={{color: "white"}}/></button>
+        </div>
+        {renderAccountDrawer()}
         <EmailOutlined />
         <NotificationsOutlined />
-        <div className="user">
-          <img src={currUser.profilePic} alt="" />
-          <span>{currUser.name}</span>
-        </div>
+        <Link to={`profile/${currentUser.id}`} style={{textDecoration: "none"}}>
+          <div className="user">
+            <img src={currentUser.profilePic} alt="" />
+            <span>{currentUser.name}</span>
+          </div>
+        </Link>
       </div>
     </div>
   );

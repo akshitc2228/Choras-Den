@@ -1,9 +1,13 @@
+import { useContext } from "react";
 import Posts from "../../components/posts/Posts";
 import "./profile.scss";
 import { Cake, Favorite, Place } from "@mui/icons-material";
+import { AuthContext } from "../../context/AuthContext";
 
 //TODO: add conditional relationship status icon: i.e., single - empty heart; in a relationship - filled heart
 const Profile = () => {
+  /* const { user: currentUser } = useContext(AuthContext) */
+
   return (
     <div className="profile">
       <div className="images">

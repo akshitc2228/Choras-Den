@@ -13,7 +13,6 @@ import dotenv from "dotenv";
 dotenv.config();
 
 //middlewares
-//didnt get this honestly, maybe to set cookies and next() is to continue with our ususla operations across the website
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Credentials", true);
   next();

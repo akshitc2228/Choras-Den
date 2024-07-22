@@ -9,6 +9,7 @@ import "./post.scss";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import Comments from "../comments/Comments";
+import moment from "moment";
 
 const Post = ({ post }) => {
   const [commentsOpen, setCommentsOpen] = useState(false);
@@ -31,7 +32,7 @@ const Post = ({ post }) => {
                 <span className="name">{post.name}</span>
               </Link>
               <span className="date">
-                A long time ago in a galaxy far far away
+                {moment(post.createdAt).fromNow()}
               </span>
             </div>
           </div>
@@ -54,7 +55,7 @@ const Post = ({ post }) => {
             Share
           </div>
         </div>
-        {commentsOpen && <Comments />}
+        {commentsOpen && <Comments postId={post.id} />}
       </div>
     </div>
   );

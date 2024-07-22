@@ -14,12 +14,11 @@ import {
   Navigate,
 } from "react-router-dom";
 import { useContext } from "react";
-import AuthContext from "./context/AuthContext";
+import { AuthContext } from "./context/AuthContext";
 import { QueryClient, QueryClientProvider } from "react-query";
 
 function App() {
-  /* const currUser = useContext(AuthContext); */
-  const currUser = true;
+  const { user: currentUser } = useContext(AuthContext);
 
   //wrapping the app in this header to make queries from any component
   const queryClient = new QueryClient();
@@ -40,7 +39,8 @@ function App() {
   };
 
   const ProtectedRoute = ({ children }) => {
-    if (!currUser) {
+    if (!currentUser) {
+      console.log("There isnt a user in local storage");
       return <Navigate to="/login" />;
     }
 

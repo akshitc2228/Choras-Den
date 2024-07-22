@@ -28,10 +28,7 @@ export const addPost = async (req, res) => {
   
     jwt.verify(token, process.env.TOKEN_KEY, (err, userInfo) => {
       if (err) return res.status(403).json("Token is not valid!");
-  
-      //getting u.id AS userId to avoid conflicts with the id attribute of posts
-      // ? : Why left join
-      // ? : why the secondary OR condition
+      
       const q = "INSERT INTO posts (`des`, `img`, `createdAt`, `userId`) VALUE (?,?,?,?)";
 
       const values = [req.body.des, req.body.img, moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"), userInfo.id]

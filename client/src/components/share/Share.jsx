@@ -14,19 +14,6 @@ const Share = () => {
 
   const queryClient = useQueryClient();
 
-  const mutation = useMutation(
-    (newPost) => {
-      return makeRequest.post("/posts", newPost);
-    },
-    {
-      onSuccess: () => {
-        // Invalidate and refetch
-        //dont get why the [] surrounding posts
-        queryClient.invalidateQueries(["posts"]);
-      },
-    }
-  );
-
   /*   try {
     const imgURL = await uploadImage(file, `post images/${user.username}`); // Get the image download URL
     const newPost = {
@@ -43,13 +30,26 @@ const Share = () => {
     alert("Error uploading post");
   } */
 
+  const mutation = useMutation(
+    (newPost) => {
+      return makeRequest.post("/posts", newPost);
+    },
+    {
+      onSuccess: () => {
+        // Invalidate and refetch
+        queryClient.invalidateQueries(["posts"]);
+      },
+    }
+  );
+
   const handleClick = async (e) => {
     e.preventDefault();
 
     try {
       const imgURL = await uploadImage(file, `post images/${currentUser.name}`); // Get the image download URL
       mutation.mutate({ des, img: imgURL });
-      console.log(imgURL);
+      alert("Post uploaded successfully");
+      window.location.reload();
     } catch (error) {
       console.log(error);
       alert("Error uploading post");

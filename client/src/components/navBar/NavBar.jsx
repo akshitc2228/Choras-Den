@@ -13,48 +13,39 @@ import {
 import "./navBar.scss";
 import { AuthContext } from "../../context/AuthContext";
 import { makeRequest } from "../../axios";
+import { ModalContext } from "../../context/ModalContext";
 
 const NavBar = () => {
-  const [ accountDrawer, setAccountDrawer ] = useState(false);
-  const [ renderUpdatePopUp, setRenderUpdate ] = useState(false);
-  const { user: currentUser } = useContext(AuthContext);
+  const [accountDrawer, setAccountDrawer] = useState(false);
 
-/*   useEffect(() => {
-    console.log(renderUpdatePopUp);
-  }, [renderUpdatePopUp]) */
+  const { user: currentUser } = useContext(AuthContext);
+  const { renderModal, toggleModal } = useContext(ModalContext);
 
   const toggleAccountDrawer = () => {
     setAccountDrawer(!accountDrawer);
-  }
+  };
 
-  const openUpdatePage = () => {
-    setRenderUpdate(true);
-    if(renderUpdatePopUp === false) return null;
-
-    return (
-      <Update />
-    );
-  }
-
-  const handleLogout = async(e) => {
+  const handleLogout = async (e) => {
     e.preventDefault();
     try {
-      await makeRequest.post("/auth/logout")
+      await makeRequest.post("/auth/logout");
       localStorage.clear();
       console.log("user successfully logged out");
       window.location.reload();
-    } catch(error) {
+    } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   const renderAccountDrawer = () => {
-    if(accountDrawer === false) return null;
+    if (accountDrawer === false) return null;
 
     return (
       <div className="accountOptionsDrawer">
         <div>
-          <button onClick={openUpdatePage}><span>Account settings</span></button>
+          <button onClick={toggleModal}>
+            <span>Account settings</span>
+          </button>
           <hr />
         </div>
         <div>
@@ -64,39 +55,46 @@ const NavBar = () => {
           <hr />
         </div>
       </div>
-    )
-  }
+    );
+  };
 
   return (
-    <div className="navBar">
-      {openUpdatePage()}
-      <div className="navBarLeft">
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <span>Chora's Den</span>
-        </Link>
-        <HomeOutlined />
-        {/*  <LightModeOutlined /> */}
-        <GridOnOutlined />
-        <div className="searchInput">
-          <SearchOutlined />
-          <input type="text" placeholder="Search..." />
-        </div>
-      </div>
-      <div className="navBarRight">
-        <div className="navBarItem">
-          <button onClick={toggleAccountDrawer}><PersonOutlined style={{color: "white"}}/></button>
-        </div>
-        {renderAccountDrawer()}
-        <EmailOutlined />
-        <NotificationsOutlined />
-        <Link to={`profile/${currentUser.id}`} style={{textDecoration: "none"}}>
-          <div className="user">
-            <img src={currentUser.profilePic} alt="" />
-            <span>{currentUser.name}</span>
+    <>
+      {renderModal && <Update />}
+      <div className="navBar">
+        <div className="navBarLeft">
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <span>Chora's Den</span>
+          </Link>
+          <HomeOutlined />
+          {/*  <LightModeOutlined /> */}
+          <GridOnOutlined />
+          <div className="searchInput">
+            <SearchOutlined />
+            <input type="text" placeholder="Search..." />
           </div>
-        </Link>
+        </div>
+        <div className="navBarRight">
+          <div className="navBarItem">
+            <button onClick={toggleAccountDrawer}>
+              <PersonOutlined style={{ color: "white" }} />
+            </button>
+          </div>
+          {renderAccountDrawer()}
+          <EmailOutlined />
+          <NotificationsOutlined />
+          <Link
+            to={`profile/${currentUser.id}`}
+            style={{ textDecoration: "none" }}
+          >
+            <div className="user">
+              <img src={currentUser.profilePic} alt="" />
+              <span>{currentUser.name}</span>
+            </div>
+          </Link>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

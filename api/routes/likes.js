@@ -6,7 +6,7 @@ import AuthMiddleware from "../middleware/authMiddleware.js";
 const router = express.Router();
 
 router.get("/", fetchLikes);
-router.post("/", AuthMiddleware, likePost);
+router.post("/", likePost);
 router.delete("/", AuthMiddleware, removeLike);
 
 export default router;

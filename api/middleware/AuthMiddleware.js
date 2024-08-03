@@ -1,18 +1,19 @@
 import jwt from "jsonwebtoken";
 
 const AuthMiddleware = (req, res, next) => {
+  console.log('Cookies:', req.cookies);
   const token = req.cookies.accessToken;
   if (!token) {
     return res.status(401).json("Not logged in");
   }
 
-  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+  jwt.verify(token, process.env.TOKEN_KEY, (err, decoded) => {
     if (err) {
       return res.status(401).json("Invalid token");
     }
 
-    req.user = decoded; // Attach the decoded user information to the request object
-    next(); // Proceed to the next middleware or route handler
+    req.user = decoded;
+    next();
   });
 };
 

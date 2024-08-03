@@ -18,5 +18,11 @@ export const postComment = (req, res) => {
     });
 }
 
+export const likePost = (req, res) => {
+    const query = "THE INSERT QUERY"
+    const values = [decoded.userId, req.body.post.Id]
+    //db query method
+}
+
 
 

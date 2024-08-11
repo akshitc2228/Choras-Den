@@ -3,6 +3,17 @@ import axios from "axios";
 import "./register.scss";
 import { useNavigate } from "react-router-dom";
 
+const RelationshipStatus = {
+  SINGLE: "Single",
+  CIVIL_PARTNERSHIP: "Civil partnership",
+  DATING: "Dating...",
+  IN_A_RELATIONSHIP: "In a relationship",
+  COMPLICATED: "Complicated",
+  NO_COMMENT: "No comment",
+};
+
+Object.freeze(RelationshipStatus);
+
 const Register = () => {
   const [inputs, setInputs] = useState({
     email: "",
@@ -10,6 +21,7 @@ const Register = () => {
     name: "",
     city: "",
     dob: "",
+    relationshipStatus: RelationshipStatus.NO_COMMENT,
   });
 
   const [err, setErr] = useState(null);
@@ -24,7 +36,7 @@ const Register = () => {
     e.preventDefault();
     try {
       await axios.post("http://localhost:8080/api/auth/register", inputs);
-      navigate("/")
+      navigate("/");
     } catch (err) {
       setErr(err.response.data);
     }
@@ -73,7 +85,20 @@ const Register = () => {
             type="date"
             placeholder="Enter your date of birth"
           ></input>
-          {err && <span style={{color:"white"}}>{err}</span>}
+          <label htmlFor="relationshipStatus">Relationship Status:</label>
+          <select
+            id="relationshipStatus"
+            name="relationshipStatus"
+            value={inputs.relationshipStatus}
+            onChange={handleChange}
+          >
+            {Object.values(RelationshipStatus).map((status) => (
+              <option key={status} value={status}>
+                {status}
+              </option>
+            ))}
+          </select>
+          {err && <span style={{ color: "white" }}>{err}</span>}
           <button onClick={handleClick}>Create new account</button>
         </form>
       </div>

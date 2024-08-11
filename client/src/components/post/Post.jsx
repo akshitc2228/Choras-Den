@@ -28,12 +28,11 @@ const Post = ({ post }) => {
     setCommentCount(count);
   };
 
-  const { isLoading, error, data } = useQuery(["likes", post.id], () => {
+  const { isLoading, error, data } = useQuery(["likes", post.id], async () => {
     try {
-      makeRequest.get(`/likes?postId=${post.id}`).then((res) => {
-        return res.data;
-      });
-      console.log(data);
+      const res = await makeRequest.get(`/likes?postId=${post.id}`);
+      /* console.log(res.data); */
+      return res.data;
     } catch (error) {
       console.log(error);
     }
@@ -48,28 +47,34 @@ const Post = ({ post }) => {
   }, [data, currentUser.id]); */
 
   const mutation = useMutation(
-    (liked) => {
-      if (!liked) return makeRequest.post("/likes/", post.id);
-      else return makeRequest.delete(`/likes?postId=${post.id}`);
+    async (liked) => {
+      try {
+        if (!liked) {
+          const response = await makeRequest.post("/likes/", { postId: post.id });
+          console.log('Post response:', response);
+          return response;
+        } else {
+          const response = await makeRequest.delete(`/likes?postId=${post.id}`);
+          console.log('Delete response:', response);
+          return response;
+        }
+      } catch (error) {
+        console.error('Error during mutation:', error.response ? error.response.data : error.message);
+        throw error; // Ensure the error is still thrown after logging it
+      }
     },
     {
       onSuccess: () => {
-        queryClient.invalidateQueries(["likes"]);
-        console.log(
-          "After hitting the like button (onSuccess of mutation method): "
-        );
-        /*         console.log(likedUsers);
-        console.log(hasUserLiked); */
+        queryClient.invalidateQueries(["likes", post.id]);
+        console.log("After hitting the like button (onSuccess of mutation method): ");
       },
     }
   );
+  
 
   const handleLike = () => {
     try {
-      console.log(data);
-      console.log("Is the data list undefined?:");
-      console.log(data ? "true" : "false");
-      /*       console.log(likedUsers);
+      /*console.log(likedUsers);
       console.log(hasUserLiked); */
       mutation.mutate(data?.includes(currentUser.id));
     } catch (error) {

@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 export const fetchLikes = (req, res) => {
   const fetchQuery = "SELECT userId FROM likes WHERE postId = ?";
 
-  db.query(fetchQuery, req.query.postId, (err, data) => {
+  db.query(fetchQuery, [req.query.postId], (err, data) => {
     if (err) return res.status(500).json(error);
     return res.status(200).json(data.map(like => like.userId));
   });

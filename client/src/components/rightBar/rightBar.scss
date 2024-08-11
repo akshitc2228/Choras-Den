@@ -56,6 +56,7 @@
       border-radius: 30px;
       border: solid 2px grey;
       max-height: fit-content;
+      min-width: max-content;
       display: flex;
       flex-direction: column;
       align-self: start;
@@ -69,6 +70,8 @@
       box-shadow: 2px -1px 30px -1px rgba(0, 0, 0, 0.53);
 
       .blockTitle {
+        display: flex;
+        width: fit-content;
         cursor: default;
         color: rgba(255, 153, 153, 0.851);
         text-shadow: 0 0 10px #ff0040, 0 0 20px #ff0040, 0 0 30px #ff0040;
@@ -88,6 +91,7 @@
           border-radius: 50%;
           object-fit: cover;
         }
+
         span {
           font-size: 18px;
 
@@ -102,17 +106,13 @@
 
     .friendReqs {
       background-color: rgb(7, 20, 44);
-      padding: 10px;
-      padding-right: 160px;
+      width: 380px;
+      padding: 15px 15px;
       border: solid 2px grey;
       border-radius: 30px;
       max-height: fit-content;
       display: flex;
       flex-direction: column;
-      align-self: start;
-      align-items: center;
-      justify-content: space-between;
-      margin: 20px 0px;
       gap: 10px;
 
       -webkit-box-shadow: 2px -1px 30px -1px rgba(0, 0, 0, 0.53);
@@ -129,7 +129,6 @@
 
       .reqCard {
         display: flex;
-        align-items: center;
         flex-direction: row;
         justify-content: space-between;
 
@@ -147,54 +146,32 @@
             border-radius: 50%;
             object-fit: cover;
           }
+
           span {
             font-size: 18px;
 
             &:hover {
               cursor: pointer;
-              color: rgb(236, 236, 5);
-              text-shadow: 0 0 10px #ffffff, 0 0 20px #bbf059, 0 0 30px #e2c51e;
             }
           }
         }
 
-        .buttons {
-          width: calc(5%);
+        button {
           display: flex;
-          align-items: center;
-          flex-direction: row;
-          gap: 10px;
+          width: fit-content;
+          padding: 4px 4px;
+          border-radius: 8px;
+          border: none;
+          transition: color ease-in 0.5s;
+          cursor: pointer;
+          color: white;
+          background-color: rgb(27, 75, 233);
 
-          button {
-            padding: 4px;
-            border-radius: 8px;
-            border: none;
-            transition: color ease-in 0.5s;
-            cursor: pointer;
-
-            &:first-child {
-              color: white;
-              background-color: rgb(27, 75, 233);
-
-              &:hover {
-                background-color: white;
-                color: blue;
-                text-shadow: 0 0 10px #9900ff, 0 0 20px #0d1ceb,
-                  0 0 30px #0077ff;
-              }
-            }
-
-            &:last-child {
-              color: white;
-              background-color: rgb(216, 46, 46);
-
-              &:hover {
-                background-color: white;
-                color: rgba(233, 5, 5, 0.851);
-                text-shadow: 0 0 10px #ff0040, 0 0 20px #ff0040,
-                  0 0 30px #ff0040;
-              }
-            }
+          &:hover {
+            background-color: white;
+            color: blue;
+            text-shadow: 0 0 10px #9900ff, 0 0 20px #0d1ceb,
+              0 0 30px #0077ff;
           }
         }
       }

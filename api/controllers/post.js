@@ -8,10 +8,6 @@ export const getPosts = async (req, res) => {
 
   jwt.verify(token, process.env.TOKEN_KEY, (err, userInfo) => {
     if (err) return res.status(403).json("Token is not valid!");
-
-    //getting u.id AS userId to avoid conflicts with the id attribute of posts
-    // ? : Why left join
-    // ? : why the secondary OR condition
     const q = `SELECT p.*, u.id AS userId, name, profilePic FROM posts AS p JOIN user AS u ON (u.id = p.userId) LEFT JOIN relationships AS r ON (p.userId = r.followedUserId) WHERE r.followerUserId = ? OR p.userId = ? ORDER BY p.createdAt DESC`;
 
     //using cookies to acces the userId

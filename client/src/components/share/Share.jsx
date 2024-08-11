@@ -14,22 +14,6 @@ const Share = () => {
 
   const queryClient = useQueryClient();
 
-  /*   try {
-    const imgURL = await uploadImage(file, `post images/${user.username}`); // Get the image download URL
-    const newPost = {
-      userId: user._id,
-      description: desc.current.value,
-      img: imgURL, // Set the download URL in the newPost object
-    };
-
-    await axios.post("http://localhost:8080/posts", newPost);
-    alert("Post uploaded successfully");
-    window.location.reload();
-  } catch (error) {
-    console.log(error);
-    alert("Error uploading post");
-  } */
-
   const mutation = useMutation(
     (newPost) => {
       return makeRequest.post("/posts", newPost);

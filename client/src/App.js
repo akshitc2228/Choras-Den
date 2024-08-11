@@ -32,7 +32,7 @@ function App() {
           <div style={{ display: "flex", flex: "6" }}>
             <Outlet />
           </div>
-          <RightBar />
+          <RightBar/>
         </div>
       </QueryClientProvider>
     );

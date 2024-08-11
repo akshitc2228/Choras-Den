@@ -1,27 +1,19 @@
-//adding a post
-//route:
-router.post("/:postId", postComment)
+import { error } from "console";
+import { makeRequest } from "./client/src/axios";
 
-//controller function:
-export const postComment = (req, res) => {
-    const insertQuery = "INSERT INTO comments(`desc`, `createdAt`, `userId`, `postId`) VALUES(?, ?, ?, ?)"
-    const payload = [
-        req.body.desc,
-        moment.now(),
-        req.body.userId,
-        req.query.postId,
-    ]
+const [ followType, setFollowType ] = useState(" ");
 
-    db.query(insertQuery, payload, (err, data) => {
-        if(err) res.status(404).json("post not found");
-        res.status(200).json("comment added successfully");
-    });
-}
+const {error, data} = useQuery(["relationships"], (followType) => {
+    makeRequest.get("/userId/relationships").then((relationshipData) => {
+        return relationshipData.data;
+    }).catch(error);
+});
 
-export const likePost = (req, res) => {
-    const query = "THE INSERT QUERY"
-    const values = [decoded.userId, req.body.post.Id]
-    //db query method
+<button onClick={fetchRelationShips(setFollowType("following"))}>Show followed users</button>;
+<button onClick={fetchRelationShips(setFollowType("followers"))}>Show followers</button>;
+
+fetchRelationsips = (followType) => {
+    //I'm probably going in circles now;
 }
 
 

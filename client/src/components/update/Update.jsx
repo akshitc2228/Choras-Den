@@ -43,10 +43,10 @@ const Update = () => {
           </div>
         </div>
         <div className="updateDetails">
-            <input type="text" placeholder="change your email address"/>
-            <input type="text" placeholder="change your profile name"/>
-            <input type="password" placeholder="change your password"/>
-            <input type="text" placeholder="Shifted to a new town?"/>
+            <input type="text" placeholder="Change your email address"/>
+            <input type="text" placeholder="Change your profile name"/>
+            <input type="password" placeholder="Change your password"/>
+            <input type="text" placeholder="Change city"/>
             <input type="date" placeholder="Dummy really forgot their DOB...(¬_¬)"/>
             <input type="text" placeholder="Change relationship status"/>
         </div>

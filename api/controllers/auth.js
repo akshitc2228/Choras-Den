@@ -12,10 +12,10 @@ export const register = (req, res) => {
     const salt = bcrypt.genSaltSync(10); //whats the sync for?
     const hashedPassword = bcrypt.hashSync(req.body.password, salt);
 
-    const q = "INSERT INTO user (`name`, `email`, `password`, `dob`, `city`) VALUE (?,?,?,?,?)";
+    const q = "INSERT INTO user (`name`, `email`, `password`, `city`, `dob`, `relationshipStatus`) VALUE (?,?,?,?,?,?)";
 
     // ! Always query in order
-    const values = [req.body.name, req.body.email, hashedPassword, new Date(req.body.dob), req.body.city];
+    const values = [req.body.name, req.body.email, hashedPassword, req.body.city, new Date(req.body.dob), req.body.relationshipStatus];
 
     db.query(q, values, (err, data) => {
       if (err) return res.status(500).json(err);
